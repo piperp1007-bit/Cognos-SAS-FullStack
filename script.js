@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 try {
                     // LLAMADA REAL A NUESTRO SERVIDOR NODE.JS
-                    const response = await fetch('http://localhost:3000/api/resumir-blog', {
+                    const response = await fetch('/api/resumir-blog', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ articuloId: articleId })
@@ -263,7 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
             try {
                 const pedidoData = { cliente_nombre: nombreCliente, telefono: telefonoCliente, total: total, productos: cart };
 
-                const response = await fetch('http://localhost:3000/api/pedidos', {
+                const response = await fetch('/api/pedidos', {
                     method: 'POST', headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(pedidoData)
                 });
@@ -344,7 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         async function getBotResponse(input) {
             try {
-                const response = await fetch('http://localhost:3000/api/chat', {
+                const response = await fetch('/api/chat', {
                     method: 'POST', headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ mensaje: input })
                 });
@@ -411,7 +411,7 @@ document.addEventListener('DOMContentLoaded', () => {
             loginBtn.style.opacity = '0.7';
 
             try {
-                const response = await fetch('http://localhost:3000/api/login', {
+                const response = await fetch('/api/login', {
                     method: 'POST', headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(userData)
                 });
@@ -468,7 +468,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btnSubmit.style.opacity = '0.7';
 
             try {
-                const response = await fetch('http://localhost:3000/api/pqrs', {
+                const response = await fetch('/api/pqrs', {
                     method: 'POST', headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(pqrsData)
                 });
@@ -530,7 +530,7 @@ document.addEventListener('DOMContentLoaded', () => {
             try {
                 // Pedimos el artículo a Node.js
                 // Pedimos el artículo a Node.js (con la ruta completa)
-                const response = await fetch('http://localhost:3000/api/leer-articulo', {
+                const response = await fetch('/api/leer-articulo', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ articuloId: articleId })
