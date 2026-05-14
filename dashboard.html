@@ -187,7 +187,7 @@
         // --- FETCH DE DATOS ---
         async function cargarPQRS() {
             try {
-                const res = await fetch('http://localhost:3000/api/pqrs');
+                const res = await fetch('/api/pqrs');
                 const data = await res.json();
                 const tbody = document.getElementById('body-pqrs');
                 if(data.datos.length === 0) { tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">Sin registros</td></tr>'; return; }
@@ -205,7 +205,7 @@
 
         async function cargarVentas() {
             try {
-                const res = await fetch('http://localhost:3000/api/pedidos');
+                const res = await fetch('/api/pedidos');
                 const data = await res.json();
                 const tbody = document.getElementById('body-ventas');
                 if(data.datos.length === 0) { tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">Sin ventas registradas</td></tr>'; return; }
@@ -224,7 +224,7 @@
 
         async function cargarUsuarios() {
             try {
-                const res = await fetch('http://localhost:3000/api/usuarios');
+                const res = await fetch('/api/usuarios');
                 const data = await res.json();
                 const tbody = document.getElementById('body-usuarios');
                 if(data.datos.length === 0) { tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">Sin usuarios</td></tr>'; return; }
@@ -252,7 +252,7 @@
             };
 
             try {
-                const res = await fetch('http://localhost:3000/api/usuarios', {
+                const res = await fetch('/api/usuarios', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify(newUser)
