@@ -17,9 +17,19 @@ const pool = require('./db');
 
 const app = express();
 
+
 // Middlewares
 app.use(cors()); 
 app.use(express.json()); 
+
+// Le decimos al servidor que permita usar los archivos de esta carpeta (CSS, JS, imágenes)
+app.use(express.static(__dirname));
+
+// Le decimos al servidor qué hacer cuando alguien entra al link principal
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 
 // =========================================
 // RUTAS DE LA API (Endpoints)
@@ -282,15 +292,8 @@ app.post('/api/leer-articulo', (req, res) => {
 // =========================================
 // ARRANQUE DEL SERVIDOR
 // =========================================
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
-// Le decimos al servidor que permita usar los archivos de esta carpeta (CSS, JS, imágenes)
-app.use(express.static(__dirname));
-
-// Le decimos al servidor qué hacer cuando alguien entra al link principal
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
-});
 
 app.listen(PORT, () => {
     console.log(`=========================================`);
