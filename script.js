@@ -19,17 +19,22 @@ document.addEventListener('DOMContentLoaded', () => {
         dropdowns.forEach(dropdown => {
             const trigger = dropdown.querySelector('.dropdown-trigger');
             
-            trigger.addEventListener('click', (e) => {
+         trigger.addEventListener('click', (e) => {
                 if (window.innerWidth <= 900) {
-                    e.preventDefault(); 
-                    
-                    // Cerrar otros submenús abiertos
-                    dropdowns.forEach(other => {
-                        if (other !== dropdown) other.classList.remove('open-mobile');
-                    });
+                    // Si el submenú NO está abierto, evitamos el salto de página y lo abrimos
+                    if (!dropdown.classList.contains('open-mobile')) {
+                        e.preventDefault(); 
+                        
+                        // Cerrar otros submenús abiertos
+                        dropdowns.forEach(other => {
+                            if (other !== dropdown) other.classList.remove('open-mobile');
+                        });
 
-                    // Abrir/Cerrar el actual
-                    dropdown.classList.toggle('open-mobile');
+                        // Abrir el actual
+                        dropdown.classList.add('open-mobile');
+                    }
+                    // Si el submenú YA ESTÁ abierto, el código no hace "preventDefault()",
+                    // por lo que el segundo toque sí te llevará a la página destino.
                 }
             });
         });
