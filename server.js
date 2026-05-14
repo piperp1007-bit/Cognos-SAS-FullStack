@@ -290,6 +290,23 @@ app.post('/api/leer-articulo', (req, res) => {
     }
 });
 // =========================================
+// 3. RUTA PARA EL CHATBOT (GEMINI IA)
+// =========================================
+app.post('/api/chat', async (req, res) => {
+    const { mensaje } = req.body;
+    try {
+        const model = genAI.getGenerativeModel({ 
+            model: "gemini-2.5-flash",
+            systemInstruction: "Eres el asistente virtual corporativo de Cognos SAS. Responde preguntas breves sobre tecnología y nuestra empresa. Sé muy amable y profesional." 
+        });
+        const result = await model.generateContent(mensaje);
+        res.json({ exito: true, respuesta: result.response.text() });
+    } catch (error) {
+        console.error('Error en Gemini:', error);
+        res.status(500).json({ exito: false, respuesta: "Error al conectar con la Inteligencia Artificial." });
+    }
+});
+// =========================================
 // ARRANQUE DEL SERVIDOR
 // =========================================
 const PORT = process.env.PORT || 3000;
